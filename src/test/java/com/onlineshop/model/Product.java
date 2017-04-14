@@ -1,6 +1,13 @@
 package com.onlineshop.model;
 
 public class Product {
+    public static final String TABLE_NAME = "\"Product\"";
+    public static final String FIND_ALL_QUERY = String.format("select * from %s",TABLE_NAME);
+    public static final String SAVE_PRODUCT_QUERY = "Insert into %s values(%d, '%s', '%f', '%s', '%d');";
+    public static final String FIND_BY_ID_QUERY = "select * from %s where \"productId\" = %d";
+    public static final String DELETE_PRODUCT_BY_ID_QUERY = "delete from %s where \"productId\" = %d";
+    public static final String UPDATE_PRODUCT_QUERY = "UPDATE %s  SET \"productName\"='%s', \"productPrice\"='%f', \"productColor\"='%s', \"categoryId\"='%d' where \"productId\"=%d";
+
     private int productId;
     private String productName;
     private double productPrice;
