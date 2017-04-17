@@ -22,6 +22,7 @@ public class UserDao extends GenericDao<User> {
                 st.close();
                 return true;
             } else {
+                System.out.println("No users were saved");
                 st.close();
                 return false;
             }
@@ -74,6 +75,7 @@ public class UserDao extends GenericDao<User> {
                 st.close();
                 return true;
             } else {
+                System.out.println("No users were updated");
                 st.close();
                 return false;
             }
@@ -94,6 +96,7 @@ public class UserDao extends GenericDao<User> {
                 st.close();
                 return true;
             } else {
+                System.out.println("No users were deleted");
                 st.close();
                 return false;
             }

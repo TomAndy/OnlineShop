@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductDao extends GenericDao{
 
@@ -85,7 +86,7 @@ public class ProductDao extends GenericDao{
         Connection conn = new ConnectToDb().getConnection();
 
         try {
-            PreparedStatement st = conn.prepareStatement(String.format(Product.SAVE_PRODUCT_QUERY, Product.TABLE_NAME,
+            PreparedStatement st = conn.prepareStatement(String.format(Locale.ROOT,Product.SAVE_PRODUCT_QUERY, Product.TABLE_NAME,
                     product.getProductId(), product.getProductName(), product.getProductPrice(), product.getProductColor(), product.getCategoryId()));
 
             int rowsInserted = st.executeUpdate();
@@ -94,6 +95,7 @@ public class ProductDao extends GenericDao{
                 return true;
             }
             else {
+                System.out.println("No products were saved");
                 st.close();
                 return false;
             }
@@ -110,7 +112,7 @@ public class ProductDao extends GenericDao{
         Connection conn = new ConnectToDb().getConnection();
 
         try {
-            PreparedStatement st = conn.prepareStatement(String.format(Product.UPDATE_PRODUCT_QUERY, Product.TABLE_NAME,
+            PreparedStatement st = conn.prepareStatement(String.format(Locale.ROOT, Product.UPDATE_PRODUCT_QUERY, Product.TABLE_NAME,
                     product.getProductName(), product.getProductPrice(), product.getProductColor(), product.getCategoryId(), product.getProductId()));
             int rowsUpdated = st.executeUpdate();
             if(rowsUpdated>=1) {
@@ -118,6 +120,7 @@ public class ProductDao extends GenericDao{
                 return true;
             }
             else {
+                System.out.println("No products were updated");
                 st.close();
                 return false;
             }
@@ -141,6 +144,7 @@ public class ProductDao extends GenericDao{
                 return true;
             }
             else {
+                System.out.println("No products were deleted");
                 st.close();
                 return false;
             }

@@ -55,6 +55,7 @@ public class CategoryDao extends GenericDao {
                 return true;
             }
             else {
+                System.out.println("No categories were saved");
                 st.close();
                 return false;
             }
@@ -108,6 +109,7 @@ public class CategoryDao extends GenericDao {
                 return true;
             }
             else {
+                System.out.println("No categories were updated");
                 st.close();
                 return false;
             }
@@ -132,6 +134,7 @@ public class CategoryDao extends GenericDao {
                 return true;
             }
             else {
+                System.out.println("No categories were deleted");
                 st.close();
                 return false;
             }
