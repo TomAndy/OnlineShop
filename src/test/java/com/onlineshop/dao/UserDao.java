@@ -1,5 +1,6 @@
 package com.onlineshop.dao;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.model.User;
 import com.onlineshop.utils.ConnectToDb;
 
@@ -12,7 +13,7 @@ public class UserDao extends GenericDao<User> {
 
     private final static String userTable = "\"User\"";
 
-    public boolean saveUser(final User user) {
+    public boolean saveUser(final User user) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.SAVE_USER_QUERY, User.TABLE_NAME,
@@ -34,7 +35,7 @@ public class UserDao extends GenericDao<User> {
         }
     }
 
-    public User findById(final int userID) {
+    public User findById(final int userID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
         User user = null;
         try {
@@ -64,7 +65,7 @@ public class UserDao extends GenericDao<User> {
     }
 
 
-    public boolean updateUser(final User user) {
+    public boolean updateUser(final User user) throws GenericException {
         Connection conn = ConnectToDb.getConnection();
 
         try {
@@ -87,7 +88,7 @@ public class UserDao extends GenericDao<User> {
         }
     }
 
-    public boolean deleteUserById(final int userID) {
+    public boolean deleteUserById(final int userID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.DELETE_USER_BY_ID_QUERY, User.TABLE_NAME, userID));
@@ -108,7 +109,7 @@ public class UserDao extends GenericDao<User> {
         }
     }
 
-    public Collection<User> findAll() { //throws MyNewException {
+    public Collection<User> findAll() throws GenericException { //throws MyNewException {
         List<User> userList = new ArrayList<User>();
 
         Connection conn = ConnectToDb.getConnection();

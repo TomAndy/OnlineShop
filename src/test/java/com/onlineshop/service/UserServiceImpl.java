@@ -1,5 +1,6 @@
 package com.onlineshop.service;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.dao.UserDao;
 import com.onlineshop.model.User;
 
@@ -14,27 +15,27 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findById(int userID) {
+    public User findById(int userID) throws GenericException {
         return userDao.findById(userID);
     }
 
     @Override
-    public boolean saveUser(User user) {
+    public boolean saveUser(User user) throws GenericException {
         return userDao.saveUser(user);
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(User user) throws GenericException {
         return userDao.updateUser(user);
     }
 
     @Override
-    public boolean deleteUserById(int userID) {
+    public boolean deleteUserById(int userID) throws GenericException {
         return userDao.deleteUserById(userID);
     }
 
     @Override
-    public Collection<User> findAll() {
+    public Collection<User> findAll() throws GenericException {
         return userDao.findAll();
     }
 }

@@ -1,5 +1,8 @@
 package com.onlineshop.utils;
 
+import com.onlineshop.Exceptions.GenericException;
+import com.onlineshop.consts.ErrorCodes;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +15,7 @@ public class ConnectToDb {
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws GenericException {
         Connection conn = null;
         String DB_URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + DATABASE;
         try {
@@ -23,9 +26,10 @@ public class ConnectToDb {
 //            }
         } catch (ClassNotFoundException e) {
             System.err.println(e.getMessage());
-//            throw new MyNewException(ErrorCode.DB_CONNECTION_ERROR);
+            throw new GenericException(ErrorCodes.DB_GEN_ERR);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            throw new GenericException(ErrorCodes.DB_CONN_ERR);
         }
         return conn;
     }
@@ -36,7 +40,7 @@ public class ConnectToDb {
             try {
                 conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
     }

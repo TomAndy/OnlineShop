@@ -1,5 +1,6 @@
 package com.onlineshop.utils;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.model.User;
 import com.onlineshop.service.UserServiceImpl;
 
@@ -27,7 +28,11 @@ public class UserOperations {
                     Scanner s1= new Scanner(System.in);
                     System.out.println("Enter user id:");
                     int id = Integer.parseInt(s1.next());
-                    System.out.println(usi.findById(id));
+                    try {
+                        System.out.println(usi.findById(id));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 2:
