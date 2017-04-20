@@ -1,5 +1,6 @@
 package com.onlineshop.dao;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.model.Category;
 import com.onlineshop.utils.ConnectToDb;
 
@@ -13,7 +14,7 @@ public class CategoryDao extends GenericDao {
     private String categoryTable = "Category";
 
     @Override
-    public Collection<Category> findAll() {
+    public Collection<Category> findAll() throws GenericException {
         List<Category> categoryList = new ArrayList<Category>();
         Connection conn = new ConnectToDb().getConnection();
         try {
@@ -43,7 +44,7 @@ public class CategoryDao extends GenericDao {
     }
 
 
-    public boolean saveCategory(final Category category) {
+    public boolean saveCategory(final Category category) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -67,7 +68,7 @@ public class CategoryDao extends GenericDao {
         }
     }
 
-    public Category findById(final int categoryID) {
+    public Category findById(final int categoryID) throws GenericException {
         String categoryName = "";
 
         Connection conn = new ConnectToDb().getConnection();
@@ -96,7 +97,7 @@ public class CategoryDao extends GenericDao {
     }
 
 
-    public boolean updateCategory(final Category category){
+    public boolean updateCategory(final Category category) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -121,7 +122,7 @@ public class CategoryDao extends GenericDao {
         }
     }
 
-    public boolean deleteCategoryById(final int categoryID) {
+    public boolean deleteCategoryById(final int categoryID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {

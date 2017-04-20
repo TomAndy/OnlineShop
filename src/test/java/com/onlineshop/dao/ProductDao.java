@@ -1,5 +1,6 @@
 package com.onlineshop.dao;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.model.Product;
 import com.onlineshop.utils.ConnectToDb;
 
@@ -14,7 +15,7 @@ public class ProductDao extends GenericDao{
     private String productTable = "Product";
 
     @Override
-    public Collection findAll() {
+    public Collection findAll() throws GenericException {
         List<Product> productList = new ArrayList<Product>();
 
         Connection conn = new ConnectToDb().getConnection();
@@ -49,7 +50,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public Product findById(final int productID) {
+    public Product findById(final int productID) throws GenericException {
         Product product = null;
 
         Connection conn = new ConnectToDb().getConnection();
@@ -82,7 +83,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean saveProduct(final Product product) {
+    public boolean saveProduct(final Product product) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -108,7 +109,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean updateProduct(final Product product) {
+    public boolean updateProduct(final Product product) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -133,7 +134,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean deleteProductById(final int productID) {
+    public boolean deleteProductById(final int productID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {

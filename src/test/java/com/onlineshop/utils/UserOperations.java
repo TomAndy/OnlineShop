@@ -45,7 +45,11 @@ public class UserOperations {
                     String login = s2.next();
                     System.out.println("Enter user email:");
                     String email = s2.next();
-                    usi.saveUser(new User(userId, userName, login, email));
+                    try {
+                        usi.saveUser(new User(userId, userName, login, email));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 3:
@@ -58,19 +62,31 @@ public class UserOperations {
                     String loginUpdated = s3.next();
                     System.out.println("Enter user email:");
                     String emailUpdated = s3.next();
-                    usi.updateUser(new User(userIdUpdated, userNameUpdated, loginUpdated, emailUpdated));
+                    try {
+                        usi.updateUser(new User(userIdUpdated, userNameUpdated, loginUpdated, emailUpdated));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 4:
                     Scanner s4 = new Scanner(System.in);
                     System.out.println("Enter user id:");
                     int userIdToDelete = Integer.parseInt(s4.next());
-                    usi.deleteUserById(userIdToDelete);
+                    try {
+                        usi.deleteUserById(userIdToDelete);
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 5:
-                    for(User user : usi.findAll()) {
-                        System.out.println(user);
+                    try {
+                        for(User user : usi.findAll()) {
+                            System.out.println(user);
+                        }
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
                     }
                     System.out.println("###################################");
                     break;

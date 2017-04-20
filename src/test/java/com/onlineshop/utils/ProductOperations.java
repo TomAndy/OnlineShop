@@ -1,5 +1,6 @@
 package com.onlineshop.utils;
 
+import com.onlineshop.Exceptions.GenericException;
 import com.onlineshop.model.Product;
 import com.onlineshop.model.User;
 import com.onlineshop.service.ProductServiceImpl;
@@ -28,7 +29,11 @@ public class ProductOperations {
                     Scanner s1= new Scanner(System.in);
                     System.out.println("Enter product id:");
                     int id = Integer.parseInt(s1.next());
-                    System.out.println(psi.findById(id));
+                    try {
+                        System.out.println(psi.findById(id));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 2:
@@ -43,7 +48,11 @@ public class ProductOperations {
                     String color = s2.next();
                     System.out.println("Enter product category id");
                     int categoryId = Integer.parseInt(s2.next());
-                    psi.saveProduct(new Product(productId, productName, price, color, categoryId));
+                    try {
+                        psi.saveProduct(new Product(productId, productName, price, color, categoryId));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 3:
@@ -58,19 +67,31 @@ public class ProductOperations {
                     String colorUpdate = s3.next();
                     System.out.println("Enter product category id");
                     int categoryUpdateId = Integer.parseInt(s3.next());
-                    psi.updateProduct(new Product(productUpdateId, productUpdateName, priceUpdate, colorUpdate, categoryUpdateId));
+                    try {
+                        psi.updateProduct(new Product(productUpdateId, productUpdateName, priceUpdate, colorUpdate, categoryUpdateId));
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 4:
                     Scanner s4 = new Scanner(System.in);
                     System.out.println("Enter product id:");
                     int productIdToDelete = Integer.parseInt(s4.next());
-                    psi.deleteProductById(productIdToDelete);
+                    try {
+                        psi.deleteProductById(productIdToDelete);
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
+                    }
                     System.out.println("###################################");
                     break;
                 case 5:
-                    for(Product prod : psi.findAll()) {
-                        System.out.println(prod);
+                    try {
+                        for(Product prod : psi.findAll()) {
+                            System.out.println(prod);
+                        }
+                    } catch (GenericException e) {
+                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
                     }
                     System.out.println("###################################");
                     break;
