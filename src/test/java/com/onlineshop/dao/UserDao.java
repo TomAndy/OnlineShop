@@ -1,6 +1,7 @@
 package com.onlineshop.dao;
 
 import com.onlineshop.Exceptions.GenericException;
+import com.onlineshop.consts.ErrorCodes;
 import com.onlineshop.model.User;
 import com.onlineshop.utils.ConnectToDb;
 
@@ -14,7 +15,7 @@ public class UserDao extends GenericDao<User> {
     private final static String userTable = "\"User\"";
 
     public boolean saveUser(final User user) throws GenericException {
-        Connection conn = new ConnectToDb().getConnection();
+        Connection conn = ConnectToDb.getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.SAVE_USER_QUERY, User.TABLE_NAME,
                     user.getUserId(), user.getUserName(), user.getLogin(), user.getEmail()));
@@ -28,15 +29,16 @@ public class UserDao extends GenericDao<User> {
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
+//            return false;
         } finally {
             ConnectToDb.closeConnection(conn);
         }
     }
 
     public User findById(final int userID) throws GenericException {
-        Connection conn = new ConnectToDb().getConnection();
+        Connection conn = ConnectToDb.getConnection();
         User user = null;
         try {
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -57,7 +59,8 @@ public class UserDao extends GenericDao<User> {
             rs.close();
             stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -81,15 +84,16 @@ public class UserDao extends GenericDao<User> {
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
+//            return false;
         } finally {
             ConnectToDb.closeConnection(conn);
         }
     }
 
     public boolean deleteUserById(final int userID) throws GenericException {
-        Connection conn = new ConnectToDb().getConnection();
+        Connection conn = ConnectToDb.getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.DELETE_USER_BY_ID_QUERY, User.TABLE_NAME, userID));
             int rowsDeleted = st.executeUpdate();
@@ -102,8 +106,9 @@ public class UserDao extends GenericDao<User> {
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+//            return false;
+            throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -132,7 +137,8 @@ public class UserDao extends GenericDao<User> {
             rs.close();
             stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }

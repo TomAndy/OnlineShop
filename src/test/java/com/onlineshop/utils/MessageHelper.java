@@ -1,5 +1,6 @@
 package com.onlineshop.utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,23 +15,23 @@ public class MessageHelper {
     private static final Map<String, String> codeToMessages = new HashMap<String, String>();
 
     public static String getMessageByCode(String code) {
+        populateMapWithErrCodes();
         return codeToMessages.get(code);
     }
 
-    public MessageHelper() {
+    public static void populateMapWithErrCodes() {
         Properties prop = new Properties();
-        String propFileName = "error_codes.properties";
+        String pathPropFileName = "src/test/resources/error_codes.properties";
         InputStream input = null;
 
         try {
-            input = new FileInputStream(propFileName);
+            input = new FileInputStream(new File(pathPropFileName));
             prop.load(input);
 
             Enumeration<?> e = prop.propertyNames();
             while (e.hasMoreElements()) {
                 String key = (String) e.nextElement();
                 String value = prop.getProperty(key);
-                System.out.println(key+"   "+value);
                 codeToMessages.put(key, value);
             }
 
@@ -45,8 +46,8 @@ public class MessageHelper {
         }
     }
 
+
     public static void main(String[] args) {
-        MessageHelper ms = new MessageHelper();
         System.out.println(MessageHelper.getMessageByCode("DB_ERR_100"));
     }
 
