@@ -34,27 +34,30 @@ public class Testing {
             System.out.println("2 - Category");
             System.out.println("3 - Product");
             System.out.println("0 - Exit");
-            choice = Integer.parseInt(sc.next());
-
-            switch (choice) {
-                case 1:
-                    UserOperations.operations(usi);
-                    System.out.println("==================================");
-                    break;
-                case 2:
-                    CategoryOperations.operations(csi);
-                    System.out.println("==================================");
-                    break;
-                case 3:
-                    ProductOperations.operations(psi);
-                    System.out.println("==================================");
-                    break;
-                case 0:
-                    quit = true;
-                    break;
-                default:
-                    quit = true;
-                    break;
+            try {
+                choice = Integer.parseInt(sc.next());
+                switch (choice) {
+                    case 1:
+                        UserOperations.operations(usi);
+                        System.out.println("==================================");
+                        break;
+                    case 2:
+                        CategoryOperations.operations(csi);
+                        System.out.println("==================================");
+                        break;
+                    case 3:
+                        ProductOperations.operations(psi);
+                        System.out.println("==================================");
+                        break;
+                    case 0:
+                        quit = true;
+                        break;
+                    default:
+                        quit = true;
+                        break;
+                }
+            }catch (NumberFormatException e) {
+                System.out.println("Not a number");
             }
         }
     }

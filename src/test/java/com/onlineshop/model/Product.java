@@ -1,5 +1,7 @@
 package com.onlineshop.model;
 
+import java.util.Formatter;
+
 public class Product {
     public static final String TABLE_NAME = "\"Product\"";
     public static final String FIND_ALL_QUERY = String.format("select * from %s",TABLE_NAME);
@@ -55,8 +57,12 @@ public class Product {
     }
 
     public String toString() {
-        return "productId: " + this.getProductId() + "; productName: " + this.getProductName()+ "; productPrice: " + this.getProductPrice() + "; productColor: "
-                + this.getProductColor()+ "; categoryId: " + this.getCategoryId();
+        StringBuilder sb = new StringBuilder();
+        Formatter frt = new Formatter(sb);
+        String template = "%-3s %-15s %-10s %-10s %-10s";
+        frt.format(template, this.getProductId(), this.getProductName(), this.getProductPrice(), this.getProductColor(),
+                this.getCategoryId());
+        return sb.toString();
     }
 
     public Product(int productId, String productName, double productPrice, String productColor, int categoryId) {

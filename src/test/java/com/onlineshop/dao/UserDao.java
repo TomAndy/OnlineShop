@@ -31,7 +31,6 @@ public class UserDao extends GenericDao<User> {
         } catch (SQLException e) {
 //            e.printStackTrace();
             throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
-//            return false;
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -86,7 +85,6 @@ public class UserDao extends GenericDao<User> {
         } catch (SQLException e) {
 //            e.printStackTrace();
             throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
-//            return false;
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -107,7 +105,6 @@ public class UserDao extends GenericDao<User> {
             }
         } catch (SQLException e) {
 //            e.printStackTrace();
-//            return false;
             throw new GenericException(ErrorCodes.DB_TABLE_ERROR);
         } finally {
             ConnectToDb.closeConnection(conn);

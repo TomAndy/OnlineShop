@@ -1,6 +1,7 @@
 package com.onlineshop.dao;
 
 import com.onlineshop.Exceptions.GenericException;
+import com.onlineshop.consts.ErrorCodes;
 import com.onlineshop.model.Product;
 import com.onlineshop.utils.ConnectToDb;
 
@@ -41,7 +42,8 @@ public class ProductDao extends GenericDao{
             rs.close();
             stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_SQL_ERR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -75,7 +77,8 @@ public class ProductDao extends GenericDao{
             rs.close();
             stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_SQL_ERR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -101,8 +104,8 @@ public class ProductDao extends GenericDao{
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_SQL_ERR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -126,8 +129,8 @@ public class ProductDao extends GenericDao{
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_SQL_ERR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
@@ -151,8 +154,8 @@ public class ProductDao extends GenericDao{
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            throw new GenericException(ErrorCodes.DB_SQL_ERR);
         } finally {
             ConnectToDb.closeConnection(conn);
         }
