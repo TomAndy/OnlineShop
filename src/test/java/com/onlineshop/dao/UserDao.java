@@ -14,11 +14,11 @@ public class UserDao extends GenericDao<User> {
 
     private final static String userTable = "\"User\"";
 
-    public boolean saveUser(final User user) throws GenericException {
+    public boolean save(final User user) throws GenericException {
         Connection conn = ConnectToDb.getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.SAVE_USER_QUERY, User.TABLE_NAME,
-                    user.getUserId(), user.getUserName(), user.getLogin(), user.getEmail()));
+                    user.getUserName(), user.getLogin(), user.getEmail()));
             int rowsInserted = st.executeUpdate();
             if (rowsInserted >= 1) {
                 st.close();
@@ -67,7 +67,7 @@ public class UserDao extends GenericDao<User> {
     }
 
 
-    public boolean updateUser(final User user) throws GenericException {
+    public boolean update(final User user) throws GenericException {
         Connection conn = ConnectToDb.getConnection();
 
         try {
@@ -90,7 +90,7 @@ public class UserDao extends GenericDao<User> {
         }
     }
 
-    public boolean deleteUserById(final int userID) throws GenericException {
+    public boolean deleteById(final int userID) throws GenericException {
         Connection conn = ConnectToDb.getConnection();
         try {
             PreparedStatement st = conn.prepareStatement(String.format(User.DELETE_USER_BY_ID_QUERY, User.TABLE_NAME, userID));

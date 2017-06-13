@@ -39,12 +39,10 @@ public class CategoryOperations {
                         break;
                     case 2:
                         Scanner s2 = new Scanner(System.in);
-                        System.out.println("Enter category id:");
-                        int categoryId = Integer.parseInt(s2.next());
                         System.out.println("Enter category name:");
-                        String categoryName = s2.next();
+                        String categoryName = s2.nextLine();
                         try {
-                            csi.saveCategory(new Category(categoryId, categoryName));
+                            csi.saveCategory(new Category(categoryName));
                         } catch (GenericException e) {
                             System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
                         }
@@ -53,9 +51,9 @@ public class CategoryOperations {
                     case 3:
                         Scanner s3 = new Scanner(System.in);
                         System.out.println("Enter category id:");
-                        int categoryIdUpdated = Integer.parseInt(s3.next());
+                        int categoryIdUpdated = Integer.parseInt(s3.nextLine());
                         System.out.println("Enter category name:");
-                        String categoryNameUpdated = s3.next();
+                        String categoryNameUpdated = s3.nextLine();
                         try {
                             csi.updateCategory(new Category(categoryIdUpdated, categoryNameUpdated));
                         } catch (GenericException e) {

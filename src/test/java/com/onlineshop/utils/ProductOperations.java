@@ -39,10 +39,8 @@ public class ProductOperations {
                         break;
                     case 2:
                         Scanner s2 = new Scanner(System.in);
-                        System.out.println("Enter product id:");
-                        int productId = Integer.parseInt(s2.next());
                         System.out.println("Enter product name:");
-                        String productName = s2.next();
+                        String productName = s2.nextLine();
                         System.out.println("Enter product price:");
                         double price = Double.parseDouble(s2.next());
                         System.out.println("Enter product color:");
@@ -50,7 +48,7 @@ public class ProductOperations {
                         System.out.println("Enter product category id");
                         int categoryId = Integer.parseInt(s2.next());
                         try {
-                            psi.saveProduct(new Product(productId, productName, price, color, categoryId));
+                            psi.saveProduct(new Product(productName, price, color, categoryId));
                         } catch (GenericException e) {
                             System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
                         }
@@ -59,9 +57,9 @@ public class ProductOperations {
                     case 3:
                         Scanner s3 = new Scanner(System.in);
                         System.out.println("Enter product id:");
-                        int productUpdateId = Integer.parseInt(s3.next());
+                        int productUpdateId = Integer.parseInt(s3.nextLine());
                         System.out.println("Enter product name:");
-                        String productUpdateName = s3.next();
+                        String productUpdateName = s3.nextLine();
                         System.out.println("Enter product price:");
                         double priceUpdate = Double.parseDouble(s3.next());
                         System.out.println("Enter product color:");

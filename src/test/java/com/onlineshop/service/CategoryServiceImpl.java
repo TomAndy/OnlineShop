@@ -19,17 +19,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public boolean saveCategory(Category category) throws GenericException {
-        return categoryDao.saveCategory(category);
+        return categoryDao.save(category);
     }
 
     @Override
     public boolean updateCategory(Category category) throws GenericException {
-        return categoryDao.updateCategory(category);
+        return categoryDao.update(category);
     }
 
     @Override
     public boolean deleteCategoryById(int categoryID) throws GenericException {
-        return categoryDao.deleteCategoryById(categoryID);
+        return categoryDao.deleteById(categoryID);
     }
 
     @Override

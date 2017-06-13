@@ -11,12 +11,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-public class ProductDao extends GenericDao{
+public class ProductDao extends GenericDao <Product>{
 
     private String productTable = "Product";
 
     @Override
-    public Collection findAll() throws GenericException {
+    public Collection <Product> findAll() throws GenericException {
         List<Product> productList = new ArrayList<Product>();
 
         Connection conn = new ConnectToDb().getConnection();
@@ -86,12 +86,12 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean saveProduct(final Product product) throws GenericException {
+    public boolean save(final Product product) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
             PreparedStatement st = conn.prepareStatement(String.format(Locale.ROOT,Product.SAVE_PRODUCT_QUERY, Product.TABLE_NAME,
-                    product.getProductId(), product.getProductName(), product.getProductPrice(), product.getProductColor(), product.getCategoryId()));
+                    product.getProductName(), product.getProductPrice(), product.getProductColor(), product.getCategoryId()));
 
             int rowsInserted = st.executeUpdate();
             if(rowsInserted>=1) {
@@ -112,7 +112,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean updateProduct(final Product product) throws GenericException {
+    public boolean update(final Product product) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -137,7 +137,7 @@ public class ProductDao extends GenericDao{
     }
 
 
-    public boolean deleteProductById(final int productID) throws GenericException {
+    public boolean deleteById(final int productID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CategoryDao extends GenericDao {
+public class CategoryDao extends GenericDao <Category>{
 
     private String categoryTable = "Category";
 
@@ -46,12 +46,12 @@ public class CategoryDao extends GenericDao {
     }
 
 
-    public boolean saveCategory(final Category category) throws GenericException {
+    public boolean save(final Category category) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
             PreparedStatement st = conn.prepareStatement(String.format(Category.SAVE_CATEGORY_QUERY, Category.TABLE_NAME,
-                    category.getCategoryId(), category.getCategoryName()));
+                    category.getCategoryName()));
             int rowsInserted = st.executeUpdate();
             if(rowsInserted>=1) {
                 st.close();
@@ -100,7 +100,7 @@ public class CategoryDao extends GenericDao {
     }
 
 
-    public boolean updateCategory(final Category category) throws GenericException {
+    public boolean update(final Category category) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {
@@ -125,7 +125,7 @@ public class CategoryDao extends GenericDao {
         }
     }
 
-    public boolean deleteCategoryById(final int categoryID) throws GenericException {
+    public boolean deleteById(final int categoryID) throws GenericException {
         Connection conn = new ConnectToDb().getConnection();
 
         try {

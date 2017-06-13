@@ -17,17 +17,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean saveProduct(Product product) throws GenericException {
-        return productDao.saveProduct(product);
+        return productDao.save(product);
     }
 
     @Override
     public boolean updateProduct(Product product) throws GenericException {
-        return productDao.updateProduct(product);
+        return productDao.update(product);
     }
 
     @Override
     public boolean deleteProductById(int productID) throws GenericException {
-        return productDao.deleteProductById(productID);
+        return productDao.deleteById(productID);
     }
 
     @Override

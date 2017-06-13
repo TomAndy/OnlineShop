@@ -21,17 +21,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean saveUser(User user) throws GenericException {
-        return userDao.saveUser(user);
+        return userDao.save(user);
     }
 
     @Override
     public boolean updateUser(User user) throws GenericException {
-        return userDao.updateUser(user);
+        return userDao.update(user);
     }
 
     @Override
     public boolean deleteUserById(int userID) throws GenericException {
-        return userDao.deleteUserById(userID);
+        return userDao.deleteById(userID);
     }
 
     @Override

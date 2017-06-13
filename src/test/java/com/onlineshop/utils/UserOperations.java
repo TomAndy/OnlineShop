@@ -38,16 +38,14 @@ public class UserOperations {
                     break;
                 case 2:
                     Scanner s2 = new Scanner(System.in);
-                    System.out.println("Enter user id:");
-                    int userId = Integer.parseInt(s2.next());
                     System.out.println("Enter user name:");
-                    String userName = s2.next();
+                    String userName = s2.nextLine();
                     System.out.println("Enter user login:");
                     String login = s2.next();
                     System.out.println("Enter user email:");
                     String email = s2.next();
                     try {
-                        usi.saveUser(new User(userId, userName, login, email));
+                        usi.saveUser(new User(userName, login, email));
                     } catch (GenericException e) {
                         System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
                     }
@@ -56,9 +54,9 @@ public class UserOperations {
                 case 3:
                     Scanner s3 = new Scanner(System.in);
                     System.out.println("Enter user id:");
-                    int userIdUpdated = Integer.parseInt(s3.next());
+                    int userIdUpdated = Integer.parseInt(s3.nextLine());
                     System.out.println("Enter user name:");
-                    String userNameUpdated = s3.next();
+                    String userNameUpdated = s3.nextLine();
                     System.out.println("Enter user login:");
                     String loginUpdated = s3.next();
                     System.out.println("Enter user email:");
@@ -101,83 +99,6 @@ public class UserOperations {
             } catch (NumberFormatException e) {
                 System.out.println("Not a number");
             }
-//            choice = Integer.parseInt(ss.next());
-//
-//            switch(choice)
-//            {
-//                case 1:
-//                    Scanner s1= new Scanner(System.in);
-//                    System.out.println("Enter user id:");
-//                    int id = Integer.parseInt(s1.next());
-//                    try {
-//                        System.out.println(usi.findById(id));
-//                    } catch (GenericException e) {
-//                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
-//                    }
-//                    System.out.println("###################################");
-//                    break;
-//                case 2:
-//                    Scanner s2 = new Scanner(System.in);
-//                    System.out.println("Enter user id:");
-//                    int userId = Integer.parseInt(s2.next());
-//                    System.out.println("Enter user name:");
-//                    String userName = s2.next();
-//                    System.out.println("Enter user login:");
-//                    String login = s2.next();
-//                    System.out.println("Enter user email:");
-//                    String email = s2.next();
-//                    try {
-//                        usi.saveUser(new User(userId, userName, login, email));
-//                    } catch (GenericException e) {
-//                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
-//                    }
-//                    System.out.println("###################################");
-//                    break;
-//                case 3:
-//                    Scanner s3 = new Scanner(System.in);
-//                    System.out.println("Enter user id:");
-//                    int userIdUpdated = Integer.parseInt(s3.next());
-//                    System.out.println("Enter user name:");
-//                    String userNameUpdated = s3.next();
-//                    System.out.println("Enter user login:");
-//                    String loginUpdated = s3.next();
-//                    System.out.println("Enter user email:");
-//                    String emailUpdated = s3.next();
-//                    try {
-//                        usi.updateUser(new User(userIdUpdated, userNameUpdated, loginUpdated, emailUpdated));
-//                    } catch (GenericException e) {
-//                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
-//                    }
-//                    System.out.println("###################################");
-//                    break;
-//                case 4:
-//                    Scanner s4 = new Scanner(System.in);
-//                    System.out.println("Enter user id:");
-//                    int userIdToDelete = Integer.parseInt(s4.next());
-//                    try {
-//                        usi.deleteUserById(userIdToDelete);
-//                    } catch (GenericException e) {
-//                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
-//                    }
-//                    System.out.println("###################################");
-//                    break;
-//                case 5:
-//                    try {
-//                        for(User user : usi.findAll()) {
-//                            System.out.println(user);
-//                        }
-//                    } catch (GenericException e) {
-//                        System.out.println(MessageHelper.getMessageByCode(e.getErrorCode()));
-//                    }
-//                    System.out.println("###################################");
-//                    break;
-//                case 0:
-//                    quit = true;
-//                    break;
-//                default:
-//                    quit = true;
-//                    break;
-//            }
         }
     }
 }
