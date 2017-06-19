@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class UserServiceImpl implements UserService{
 
-    UserDao userDao;
+    private UserDao userDao;
 
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
@@ -38,4 +38,5 @@ public class UserServiceImpl implements UserService{
     public Collection<User> findAll() throws GenericException {
         return userDao.findAll();
     }
+
 }
